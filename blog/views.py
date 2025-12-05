@@ -1,6 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
-from django.shortcuts import redirect
+from django import forms
+from .forms import PostForm
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ["titulo", "conteudo"]
 
 def post_list(request):
     posts = Post.objects.all().order_by('-data_postagem')
@@ -12,31 +18,30 @@ def post_detail(request, pk):
 
 def post_create(request):
     if request.method == "POST":
-        titulo = request.POST.get("titulo")
-        conteudo = request.POST.get("conteudo")
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('post_list')
+    else:
+        form = PostForm()
 
-        Post.objects.create(
-            titulo=titulo,
-            conteudo=conteudo
-        )
-
-        return redirect('post_list')
-
-    return render(request, 'blog/post_form.html')
+    return render(request, 'blog/post_form.html', {'form': form})
 
 def post_update(request, pk):
-    post = Post.objects.get(pk=pk)
+    post = get_object_or_404(Post, pk=pk)
 
     if request.method == "POST":
-        post.titulo = request.POST.get("titulo")
-        post.conteudo = request.POST.get("conteudo")
-        post.save()
-        return redirect('post_detail', pk=post.pk)
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('post_detail', pk=pk)
+    else:
+        form = PostForm(instance=post)
 
-    return render(request, 'blog/post_form.html', {'post': post})
+    return render(request, 'blog/post_form.html', {'form': form})
 
 def post_delete(request, pk):
-    post = Post.objects.get(pk=pk)
+    post = get_object_or_404(Post, pk=pk)
 
     if request.method == "POST":
         post.delete()
