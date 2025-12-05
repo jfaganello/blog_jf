@@ -3,6 +3,16 @@ from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 
+class Category(models.Model):
+    nome = models.CharField(max_length=100, unique=True)
+    descricao = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.nome
+
+    def get_absolute_url(self):
+        return reverse("category_detail", args=[self.id])
+
 class Post(models.Model):
     titulo = models.CharField(max_length=200)
     titulo_livro = models.CharField("Título do livro", max_length=200, blank=True, null=True)
@@ -10,6 +20,7 @@ class Post(models.Model):
     conteudo = models.TextField()
     criado_em = models.DateTimeField(default=timezone.now)
     atualizado_em = models.DateTimeField(auto_now=True)
+    categorias = models.ManyToManyField("Category", related_name="posts", blank=True)
 
     def __str__(self):
         return self.titulo
@@ -35,4 +46,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comentário de {self.autor} em {self.data_postagem:%d/%m/%Y}'
-

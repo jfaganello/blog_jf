@@ -1,7 +1,8 @@
 from django.urls import path
 from .views import (
     PostListView, PostDetailView, PostCreateView,
-    PostUpdateView, PostDeleteView, CommentCreateView
+    PostUpdateView, PostDeleteView, CommentCreateView, 
+    CategoryListView, CategoryDetailView, CategoryCreateView
 )
 
 urlpatterns = [
@@ -11,5 +12,8 @@ urlpatterns = [
     path('<int:pk>/editar/', PostUpdateView.as_view(), name='post_update'),
     path('<int:pk>/deletar/', PostDeleteView.as_view(), name='post_delete'),
     path('post/<int:post_id>/comment/new/', CommentCreateView.as_view(), name="comment_create"),
+    path("categorias/", CategoryListView.as_view(), name="category_list"),
+    path("categorias/nova/", CategoryCreateView.as_view(), name="category_create"),
+    path("categorias/<int:pk>/", CategoryDetailView.as_view(), name="category_detail"),
 ]
 
