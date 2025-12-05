@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Blog de Resenhas{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'blog/styles.css' %}">
+</head>
+<body>
+
+<header>
+    <h1><a href="{% url 'post_list' %}">Blog de Resenhas</a></h1>
+</header>
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer>
+    <p>© {{ now|date:"Y" }} — Blog de Resenhas</p>
+</footer>
+
+</body>
+</html>
+`
+
+

@@ -1,10 +1,18 @@
-<h1>Confirmar remoção</h1>
+{% extends "blog/base.html" %}
 
-<p>Tem certeza que deseja remover o post "{{ object.titulo }}"?</p>
+{% block title %}Excluir Resenha{% endblock %}
+
+{% block content %}
+<h2>Excluir Resenha</h2>
+
+<div class="delete-warning">
+    Tem certeza que deseja excluir a resenha:
+    <strong>{{ post.titulo }}</strong>?
+</div>
 
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Sim, remover</button>
+    <button type="submit" class="btn btn-danger">Sim, excluir</button>
+    <a href="{% url 'post_detail' post.id %}" class="btn">Cancelar</a>
 </form>
-
-<a href="{% url 'post_detail' object.id %}">Cancelar</a>
+{% endblock %}

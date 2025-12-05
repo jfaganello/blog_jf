@@ -1,0 +1,168 @@
+/* ======= TEMA GERAL ======= */
+:root {
+    --bg-dark: #121212;
+    --bg-card: #1e1e1e;
+    --bg-hover: #242424;
+    --text: #eaeaea;
+    --text-light: #b5b5b5;
+    --primary: #b81010;
+    --primary-hover: #d81111;
+    --danger: #ff6b6b;
+    --danger-hover: #e05555;
+    --radius: 12px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* ======= HEADER ======= */
+header {
+    background: #000;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid var(--primary);
+}
+
+header h1 a {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+header h1 a:hover {
+    color: var(--primary-hover);
+}
+
+/* ======= LAYOUT ======= */
+main {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* ======= LISTA DE POSTS ======= */
+.post-list-item {
+    background: var(--bg-card);
+    padding: 20px;
+    margin-bottom: 16px;
+    border-radius: var(--radius);
+    transition: background 0.2s;
+}
+
+.post-list-item:hover {
+    background: var(--bg-hover);
+}
+
+.post-list-item a {
+    color: var(--primary);
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.post-list-item a:hover {
+    color: var(--primary-hover);
+}
+
+.post-date {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* ======= DETALHE DO POST ======= */
+.post-detail {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: var(--radius);
+}
+
+.post-detail h2 {
+    margin-top: 0;
+    font-size: 2rem;
+}
+
+.post-detail .conteudo {
+    margin-top: 20px;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+/* ======= BOTÕES ======= */
+.btn {
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
+    margin-right: 10px;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: var(--danger-hover);
+}
+
+/* ======= FORMULÁRIOS ======= */
+form {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: var(--radius);
+}
+
+form label {
+    display: block;
+    margin: 12px 0 6px;
+    color: var(--text-light);
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 12px;
+    background: var(--bg-dark);
+    border: 1px solid #333;
+    border-radius: var(--radius);
+    color: var(--text);
+    font-size: 1rem;
+}
+
+form textarea {
+    min-height: 180px;
+}
+
+/* ======= CONFIRMAÇÃO DE DELETE ======= */
+.delete-warning {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: var(--radius);
+    border-left: 5px solid var(--danger);
+    margin-bottom: 20px;
+}
+
+/* ======= FOOTER ======= */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-light);
+    margin-top: 40px;
+}
