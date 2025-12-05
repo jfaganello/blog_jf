@@ -1,15 +1,16 @@
 <h1>Posts</h1>
 
-<a href="{% url 'post_create' %}">Novo Post</a>
+<a href="{% url 'post_create' %}">Criar novo post</a>
 
 <ul>
-{% for post in posts %}
-    <li>
-        <a href="{% url 'post_detail' post.pk %}">
-            {{ post.titulo }}
-        </a>
-        — {{ post.data_postagem|date:"d/m/Y H:i" }}
-    </li>
-{% endfor %}
+    {% for post in posts %}
+        <li>
+            <a href="{% url 'post_detail' post.id %}">
+                {{ post.titulo }}
+            </a>
+        </li>
+    {% empty %}
+        <li>Nenhum post ainda.</li>
+    {% endfor %}
 </ul>
 

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse
 
 class Post(models.Model):
     titulo = models.CharField(max_length=200)
@@ -11,5 +12,4 @@ class Post(models.Model):
         return self.titulo
 
     def get_absolute_url(self):
-        from django.urls import reverse
-        return reverse('post_detail', kwargs={'pk': self.pk})
+        return reverse("post_detail", args=[self.id])

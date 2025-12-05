@@ -8,11 +8,12 @@ class PostListView(ListView):
     model = Post
     template_name = 'blog/post_list.html'
     context_object_name = 'posts'
-    ordering = ['-data_postagem']
+    ordering = ['-criado_em']
 
 class PostDetailView(DetailView):
     model = Post
     template_name = 'blog/post_detail.html'
+    context_object_name = "post"
 
 class PostCreateView(CreateView):
     model = Post
