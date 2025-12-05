@@ -1,0 +1,12 @@
+<h1>Blog</h1>
+<a href="{% url 'post_create' %}">Novo Post</a>
+
+<ul>
+    {% for post in object_list %}
+        <li>
+            <a href="{% url 'post_detail' post.pk %}">
+                {{ post.titulo }}
+            </a> – {{ post.criado_em }}
+        </li>
+    {% endfor %}
+</ul>
