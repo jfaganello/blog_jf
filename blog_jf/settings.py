@@ -21,13 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-v^fob_yzl_5x@+h!#mm9j@#tzvqu5u3fi#&a-acxm^@djxxzz4'
+SECRET_KEY = os.getenv("SECRET_KEY", "mude_essa_chave_para_producao")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'blog-jf.onrender.com']
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
 # Application definition
 
@@ -119,7 +119,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'blog' / 'static']  
-STATIC_ROOT = BASE_DIR / 'staticfiles'     
+STATIC_ROOT = BASE_DIR / "staticfiles" 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'        
 
 # Default primary key field type
