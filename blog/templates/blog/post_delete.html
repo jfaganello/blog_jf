@@ -1,10 +1,8 @@
-<h2>Tem certeza que deseja deletar este post?</h2>
+<h2>Tem certeza que deseja deletar?</h2>
 
-<p>{{ object.titulo }}</p>
-
-<form method="post">
+<form method="POST">
     {% csrf_token %}
-    <button type="submit">Confirmar</button>
+    <button type="submit">Sim, deletar</button>
 </form>
 
-<a href="{% url 'post_list' %}">Cancelar</a>
+<a href="{% url 'post_detail' object.pk %}">Cancelar</a>

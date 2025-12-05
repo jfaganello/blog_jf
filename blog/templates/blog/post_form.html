@@ -1,9 +1,7 @@
-<h2>{% if object %}Editar Post{% else %}Novo Post{% endif %}</h2>
+<h2>Post</h2>
 
-<form method="post">
+<form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Salvar</button>
 </form>
-
-<a href="{% url 'post_list' %}">Voltar</a>
