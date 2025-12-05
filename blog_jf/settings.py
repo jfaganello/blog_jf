@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-v^fob_yzl_5x@+h!#mm9j@#tzvqu5u3fi#&a-acxm^@djxxzz4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'seu-subdominio.onrender.com']
 
 
 # Application definition
@@ -39,8 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
 ]
-
-STATIC_URL = 'static/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -117,7 +116,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'blog' / 'static']  
+STATIC_ROOT = BASE_DIR / 'staticfiles'             
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
