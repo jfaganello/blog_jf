@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, Comment
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -10,4 +10,12 @@ class PostForm(forms.ModelForm):
             "titulo_livro": "Título do livro",
             "autor": "Autor",
             "conteudo": "Conteúdo",
+        }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ["texto"]
+        widgets = {
+            "texto": forms.Textarea(attrs={"rows": 4})
         }

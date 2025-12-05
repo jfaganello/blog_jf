@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from django.contrib.auth import get_user_model
 
 class Post(models.Model):
     titulo = models.CharField(max_length=200)
@@ -15,4 +16,23 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse("post_detail", args=[self.id])
+    
+User = get_user_model()
+
+class Comment(models.Model):
+    autor = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='comments'
+    )
+    post = models.ForeignKey(
+        'Post',
+        on_delete=models.CASCADE,
+        related_name='comments'
+    )
+    texto = models.TextField()
+    data_postagem = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f'Comentário de {self.autor} em {self.data_postagem:%d/%m/%Y}'
 

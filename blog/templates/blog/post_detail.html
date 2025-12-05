@@ -5,12 +5,15 @@
 {% block content %}
 <div class="post-detail">
     <h2>{{ post.titulo }}</h2>
+
     {% if post.titulo_livro %}
     <p><strong>Título do livro:</strong> {{ post.titulo_livro }}</p>
     {% endif %}
+
     {% if post.autor %}
     <p><strong>Autor:</strong> {{ post.autor }}</p>
     {% endif %}
+
     <p class="post-date">
         Publicado em {{ post.criado_em|date:"d/m/Y H:i" }}
     </p>
@@ -23,4 +26,34 @@
     <a class="btn btn-primary" href="{% url 'post_update' post.id %}">Editar</a>
     <a class="btn btn-danger" href="{% url 'post_delete' post.id %}">Excluir</a>
 </div>
+
+<hr>
+
+<div class="comments-section">
+    <h3>Comentários</h3>
+
+    <a class="btn btn-secondary" href="{% url 'comment_create' post.id %}">
+        Adicionar comentário
+    </a>
+
+    <br><br>
+
+    {% if comments %}
+        <ul class="comment-list">
+            {% for comment in comments %}
+            <li class="comment-item">
+                <p class="comment-meta">
+                    <strong>{{ comment.autor }}</strong> •
+                    {{ comment.data_postagem|date:"d/m/Y H:i" }}
+                </p>
+                <p class="comment-text">{{ comment.texto }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Ainda não há comentários neste post.</p>
+    {% endif %}
+</div>
+
 {% endblock %}
+
