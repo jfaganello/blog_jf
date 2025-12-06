@@ -1,2 +1,12 @@
 __pycache__/
 db.sqlite3
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
